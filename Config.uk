@@ -1,17 +1,23 @@
 menuconfig LIBNETTLE
     bool "libnettle: Symmetric and one-way cryptographic library"
-    select LIBNEWLIBC
+    depends on ARCH_X86_64 || ARCH_ARM_64
+    # NOTE: this does not select a libc. It links against whatever libc the
+    # application provides (e.g. musl). The original port hard-selected newlib.
+
+if LIBNETTLE
+    config LIBNETTLE_HOGWEED
+    bool "libhogweed: Pub-key cryptography (RSA, ECDSA, EdDSA, DSA)"
+    # Public-key crypto needs bignum arithmetic. Rather than depend on a host, we
+    # build Nettle's bundled mini-gmp from source (./configure --enable-mini-gmp).
+    default n
+
+    config LIBNETTLE_TEST
+    bool "Enable dependencies for running the upstream Nettle test suite"
+    # NOTE: This option only pulls in filesystem/rootfs dependencies needed by
+    # an external test application; this port does not build upstream tests as
+    # part of libnettle itself.
     select LIBUK9P if PLAT_KVM
     select LIB9PFS if PLAT_KVM
     select LIBVFSCORE_AUTOMOUNT_ROOTFS if PLAT_KVM
-    default y
-
-if LIBNETTLE
-    config LIBNETTLE_TEST
-    bool "Provide test suite"
     default n
 endif
-
-choice LIBVFSCORE_ROOTFS
-    default LIBVFSCORE_ROOTFS_9PFS
-endchoice

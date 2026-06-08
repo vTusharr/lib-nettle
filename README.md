@@ -2,7 +2,7 @@ Nettle crypto library for Unikraft
 =============================
 
 This is the port of Nettle crypto library for Unikraft as external library.
-It requires newlibc to work. When adding the library in the dependencies list,
+ When adding the library in the dependencies list,
 the libraries should be like this:
 `...$(UK_LIBS)/nettle:$(UK_LIBS)/newlib:...`
 

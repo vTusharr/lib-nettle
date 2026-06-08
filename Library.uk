@@ -2,5 +2,5 @@ name        := "nettle"
 description := "A low-level cryptographic library."
 gitrepo     := "https://git.lysator.liu.se/nettle/nettle.git"
 homepage    := "https://www.lysator.liu.se/~nisse/nettle/"
-version     := 3.6 sha256:d24c0d0f2abffbc8f4f34dcf114b0f131ec3774895f3555922fe2f40f3d5e3f1 https://ftp.gnu.org/gnu/nettle/nettle-3.6.tar.gz
+version     := 4.0 sha256:3addbc00da01846b232fb3bc453538ea5468da43033f21bb345cb1e9073f5094 https://ftp.gnu.org/gnu/nettle/nettle-4.0.tar.gz
 license     := "LGPL-3.0"
